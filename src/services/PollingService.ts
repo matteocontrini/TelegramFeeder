@@ -52,6 +52,9 @@ export class PollingService implements IPollingService {
 
             const newPosts = this.findNewPosts(feed.guidsCache, posts);
 
+            // Update guids cache so that new posts aren't notified again
+            feed.guidsCache = posts.map(x => x.guid);
+
             logger.info(newPosts.length, "new posts were found");
 
             await this.notifyPosts(feed, newPosts);
