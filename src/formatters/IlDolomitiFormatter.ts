@@ -16,27 +16,41 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
         // TODO: escape
         msg += "<strong>" + item.title + "</strong>";
 
-        if (item.contentSnippet !== "") {
-            msg += "\n\n<i>" + item.contentSnippet + "</i>";
-        }
-
-        msg += "\n\n📰 <a href=\"" + item.link + "\">Leggi articolo</a>";
-
-        match = null;
+        let snippet;
+        let photoUrl;
 
         try {
             const resp: Response = await fetch(item.link);
 
             if (resp.status === 200) {
                 const respText: string = await resp.text();
+
                 match = respText.match(/<meta property="og:image" content="(.+?)" \/>/);
+                if (match) {
+                    photoUrl = match[1];
+                }
+
+                match = respText.match(/<div class="artSub">(?:.+?)<p>(.+?)<\/p>/);
+                if (match) {
+                    snippet = match[1];
+                }
             }
         } catch (e) {
             // ignore
         }
 
-        if (match) {
-            return new FormattedMessage(msg, match[1]);
+        if (!snippet && item.contentSnippet !== "") {
+            snippet = item.contentSnippet;
+        }
+
+        if (snippet) {
+            msg += "\n\n<i>" + snippet + "</i>";
+        }
+
+        msg += "\n\n📰 <a href=\"" + item.link + "\">Leggi articolo</a>";
+
+        if (photoUrl) {
+            return new FormattedMessage(msg, photoUrl);
         } else {
             return new FormattedMessage(msg);
         }
