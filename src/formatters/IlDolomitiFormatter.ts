@@ -1,6 +1,8 @@
+import * as entities from "entities";
 import fetch, { Response } from "node-fetch";
 import { Item } from "rss-parser";
 import FormattedMessage from "../entities/FormattedMessage";
+import * as util from "../util";
 import IMessageFormatter from "./IMessageFormatter";
 
 export default class IlDolomitiFormatter implements IMessageFormatter {
@@ -13,8 +15,9 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
             msg += "#" + match[1] + " — ";
         }
 
-        // TODO: escape
-        msg += "<strong>" + item.title + "</strong>";
+        let title = entities.decodeHTML(item.title);
+        title = util.telegramEscape(title);
+        msg += "<strong>" + title + "</strong>";
 
         let snippet;
         let photoUrl;
@@ -44,6 +47,9 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
         }
 
         if (snippet) {
+            snippet = entities.decodeHTML(snippet);
+            snippet = util.telegramEscape(snippet);
+
             msg += "\n\n<i>" + snippet + "</i>";
         }
 
