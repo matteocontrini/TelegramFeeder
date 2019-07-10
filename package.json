@@ -1,0 +1,22 @@
+{
+  "name": "telegram-feeder",
+  "version": "0.0.0",
+  "private": true,
+  "description": "TelegramFeeder",
+  "main": "app.js",
+  "author": "Matteo Contrini <matteo@contrini.it>",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.14",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.3.7",
+    "awilix": "^4.2.2",
+    "node-fetch": "^2.6.0",
+    "rss-parser": "^3.7.2"
+  }
+}
