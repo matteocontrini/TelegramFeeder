@@ -12,7 +12,13 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
         let match = item.link.match(/https:\/\/www\.ildolomiti\.it\/(\w+)\//);
 
         if (match) {
-            msg += "#" + match[1] + " — ";
+            let category = match[1];
+
+            if (category == "blog") {
+                return null;
+            }
+
+            msg += "#" + category + " — ";
         }
 
         let title = entities.decodeHTML(item.title);

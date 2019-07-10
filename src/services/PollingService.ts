@@ -66,10 +66,15 @@ export class PollingService implements IPollingService {
 
     private async notifyPosts(feed: Feed, newPosts: Item[]) {
         for (const post of newPosts) {
-            logger.info("Notifying post with link:", post.link);
+            logger.info("Notifying post with guid:", post.guid);
 
             try {
                 const formatted: FormattedMessage = await feed.messageFormatter.format(post);
+
+                if (formatted == null) {
+                    logger.info("Never mind, skipping...");
+                    continue;
+                }
 
                 if (formatted.type === MessageType.Text) {
                     await this.telegram.sendMessage(feed.telegramChat, formatted.text);
