@@ -26,7 +26,7 @@ export class PollingService implements IPollingService {
     public start() {
         this.update();
 
-        setInterval(this.update, 10 * 60 * 1000);
+        setInterval(this.update.bind(this), 1 * 60 * 1000);
     }
 
     private async update() {

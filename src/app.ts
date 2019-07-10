@@ -8,7 +8,7 @@ import { PollingService } from "./services/PollingService";
 import { TelegramService } from "./services/TelegramService";
 
 process.on("unhandledRejection", err => {
-    logger.error("Unhandled rejection: ", err);
+    logger.error("Unhandled rejection:", err);
 });
 
 logger.info("Initializing container...");
