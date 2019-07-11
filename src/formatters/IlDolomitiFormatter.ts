@@ -54,6 +54,7 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
 
         if (snippet) {
             snippet = entities.decodeHTML(snippet);
+            snippet = snippet.replace(/<[^>]*>?/gm, '');
             snippet = util.telegramEscape(snippet);
 
             msg += "\n\n<i>" + snippet + "</i>";
