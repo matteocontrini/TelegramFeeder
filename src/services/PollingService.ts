@@ -44,6 +44,15 @@ export class PollingService implements IPollingService {
                 continue;
             }
 
+            if (feed.name === "ildolomiti") {
+                for (const post of posts) {
+                    const match = post.guid.match(/^\D+(\d)+$/);
+                    if (match) {
+                        post.guid = match[1];
+                    }
+                }
+            }
+
             if (feed.guidsCache.length === 0) {
                 logger.info("This is the first fetch. Storing", posts.length, "posts into cache");
                 feed.guidsCache = posts.map(x => x.guid);
