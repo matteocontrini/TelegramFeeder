@@ -46,7 +46,7 @@ export class PollingService implements IPollingService {
 
             if (feed.name === "ildolomiti") {
                 for (const post of posts) {
-                    const match = post.guid.match(/^\D+(\d)+$/);
+                    const match = post.guid.match(/^\D+(\d+)$/);
                     if (match) {
                         post.guid = match[1];
                     }
