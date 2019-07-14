@@ -6,6 +6,7 @@ import logger from "./logger";
 import { FeedReaderService } from "./services/FeedReaderService";
 import { PollingService } from "./services/PollingService";
 import { TelegramService } from "./services/TelegramService";
+import IlDolomitiFilter from "./filters/IlDolomitiFilter";
 
 process.on("unhandledRejection", err => {
     logger.error("Unhandled rejection:", err);
@@ -18,7 +19,7 @@ const container = awilix.createContainer({
 });
 
 const FEEDS: Feed[] = [
-    new Feed("ildolomiti", "https://www.ildolomiti.it/rss.xml", new IlDolomitiFormatter(), "@ildolomitinews"),
+    new Feed("https://www.ildolomiti.it/rss.xml", new IlDolomitiFilter(), new IlDolomitiFormatter(), "@ildolomitinews"),
 ];
 
 container.register({
