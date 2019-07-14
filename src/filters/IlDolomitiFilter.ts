@@ -7,7 +7,7 @@ export default class IlDolomitiFilter implements IFeedFilter {
         // becomes
         //  <guid isPermaLink="false">23300</guid>
         for (const post of items) {
-            const match = post.guid.match(/^\D+(\d+)$/);
+            const match = post.guid.match(/\D(\d+)$/);
             if (match) {
                 post.guid = match[1];
             }
