@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import BotSettings from "../entities/BotSettings";
 
 export interface ITelegramService {
-    sendMessage(chat: string, text: string): Promise<void>;
+    sendMessage(chat: string, text: string, showPreview: boolean): Promise<void>;
     sendPhoto(chat: string, photo: string, text: string): Promise<void>;
 }
 
@@ -13,7 +13,7 @@ export class TelegramService implements ITelegramService {
         this.baseUrl = "https://api.telegram.org/bot" + botSettings.botToken;
     }
 
-    public async sendMessage(chat: string, text: string): Promise<void> {
+    public async sendMessage(chat: string, text: string, showPreview: boolean = false): Promise<void> {
         const url = this.baseUrl + "/sendMessage";
 
         const opts = {
@@ -22,6 +22,7 @@ export class TelegramService implements ITelegramService {
                 chat_id: chat,
                 text,
                 parse_mode: "HTML",
+                disable_web_page_preview: !showPreview,
             }),
             headers: { "Content-Type": "application/json" },
         };
@@ -29,7 +30,7 @@ export class TelegramService implements ITelegramService {
         const res = await fetch(url, opts);
 
         if (res.status !== 200) {
-            throw new Error(`Response status code was [${res.status}]. Body: ${res.text()}`);
+            throw new Error(`Response status code was [${res.status}]. Body: ${await res.text()}`);
         }
     }
 

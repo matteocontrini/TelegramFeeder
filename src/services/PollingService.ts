@@ -84,7 +84,7 @@ export class PollingService implements IPollingService {
                 }
 
                 if (formatted.type === MessageType.Text) {
-                    await this.telegram.sendMessage(feed.telegramChat, formatted.text);
+                    await this.telegram.sendMessage(feed.telegramChat, formatted.text, formatted.showPreview);
                 } else if (formatted.type === MessageType.Photo) {
                     await this.telegram.sendPhoto(feed.telegramChat, formatted.photoUrl, formatted.text);
                 }

@@ -1,12 +1,13 @@
 ﻿import * as awilix from "awilix";
 import BotSettings from "./entities/BotSettings";
 import { Feed } from "./entities/Feed";
+import IlDolomitiFilter from "./filters/IlDolomitiFilter";
 import IlDolomitiFormatter from "./formatters/IlDolomitiFormatter";
+import LaBusaFormatter from "./formatters/LaBusaFormatter";
 import logger from "./logger";
 import { FeedReaderService } from "./services/FeedReaderService";
 import { PollingService } from "./services/PollingService";
 import { TelegramService } from "./services/TelegramService";
-import IlDolomitiFilter from "./filters/IlDolomitiFilter";
 
 process.on("unhandledRejection", err => {
     logger.error("Unhandled rejection:", err);
@@ -20,9 +21,13 @@ const container = awilix.createContainer({
 
 const FEEDS: Feed[] = [
     new Feed("https://www.ildolomiti.it/rss.xml",
-             new IlDolomitiFilter(),
-             new IlDolomitiFormatter(),
-             "@ildolomitinews"),
+        new IlDolomitiFilter(),
+        new IlDolomitiFormatter(),
+        "@ildolomitinews"),
+    new Feed("https://labusa.info/wp/feed/",
+        null,
+        new LaBusaFormatter(),
+        "@labusanews"),
 ];
 
 container.register({

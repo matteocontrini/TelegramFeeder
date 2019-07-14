@@ -34,7 +34,7 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
             if (resp.status === 200) {
                 const respText: string = await resp.text();
 
-                match = respText.match(/<meta property="og:image" content="(.+?)" \/>/);
+                match = respText.match(/<meta property="og:image" content="(.+?)" ?\/>/);
                 if (match) {
                     photoUrl = match[1];
                 }
