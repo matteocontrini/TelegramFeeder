@@ -18,5 +18,4 @@ blocks:
             - node hello.js
             # Uncomment the following line to pull your code,
             # then proceed by adding your custom commands:
-            - checkout
-            - npm run build
+            #- checkout
