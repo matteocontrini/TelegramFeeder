@@ -12,11 +12,6 @@ blocks:
       jobs:
         - name: Run some code
           commands:
-            # You can add typescript to your package.json to cache it.
-            - npm install -g typescript
-            - echo 'console.log("Hello world");' > hello.ts && tsc hello.ts
-            - node hello.js
-            # Uncomment the following line to pull your code,
-            # then proceed by adding your custom commands:
             - checkout
+            - npm install
             - npm run build
