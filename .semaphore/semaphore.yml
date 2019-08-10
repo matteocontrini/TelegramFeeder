@@ -33,3 +33,9 @@ promotions:
     pipeline_file: another_semaphore.yml
   - name: Deploy 3
     pipeline_file: another_semaphore.yml
+  - name: BETA Deploy 1
+    pipeline_file: another_semaphore.yml
+  - name: BETA Deploy 2
+    pipeline_file: another_semaphore.yml
+  - name: BETA Deploy 3
+    pipeline_file: another_semaphore.yml
