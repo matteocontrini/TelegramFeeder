@@ -25,3 +25,7 @@ blocks:
             - checkout
             - npm install
             - npm run build
+
+promotions:
+  - name: Next one
+    pipeline_file: another_semaphore.yml
