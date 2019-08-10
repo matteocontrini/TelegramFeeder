@@ -7,7 +7,15 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: TypeScript example
+  - name: Parallel 1
+    task:
+      jobs:
+        - name: Run some code
+          commands:
+            - checkout
+            - npm install
+            - npm run build
+  - name: Parallel 2
     task:
       jobs:
         - name: Run some code
