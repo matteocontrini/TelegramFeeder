@@ -8,6 +8,7 @@ agent:
     os_image: ubuntu1804
 blocks:
   - name: Parallel 1
+    dependencies: []
     task:
       jobs:
         - name: Run some code
@@ -16,6 +17,7 @@ blocks:
             - npm install
             - npm run build
   - name: Parallel 2
+    dependencies: []
     task:
       jobs:
         - name: Run some code
