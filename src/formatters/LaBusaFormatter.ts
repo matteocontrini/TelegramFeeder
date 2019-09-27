@@ -11,7 +11,7 @@ export default class LaBusaFormatter implements IMessageFormatter {
         const title = util.telegramEscape(item.title);
         msg += "<strong>" + title + "</strong>";
 
-        msg += "\n\n📰 <a href=\"" + item.link + "\">Leggi articolo</a>";
+        msg += "\n\n📰 " + item.link;
 
         return new FormattedMessage(msg, null, true);
     }
