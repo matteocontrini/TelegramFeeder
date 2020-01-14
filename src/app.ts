@@ -24,7 +24,7 @@ const FEEDS: Feed[] = [
         new IlDolomitiFilter(),
         new IlDolomitiFormatter(),
         "@ildolomitinews"),
-    new Feed("https://labusa.info/wp/feed/",
+    new Feed("https://labusa.info/feed/",
         null,
         new LaBusaFormatter(),
         "@labusanews"),
