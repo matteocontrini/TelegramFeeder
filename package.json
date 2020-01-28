@@ -20,6 +20,6 @@
     "awilix": "^4.2.2",
     "entities": "^1.1.2",
     "node-fetch": "^2.6.0",
-    "rss-parser": "git+https://github.com/rbren/rss-parser.git"
+    "rss-parser": "^3.7.3"
   }
 }

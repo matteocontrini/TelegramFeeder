@@ -3,6 +3,7 @@ import BotSettings from "./entities/BotSettings";
 import { Feed } from "./entities/Feed";
 import IlDolomitiFilter from "./filters/IlDolomitiFilter";
 import IlDolomitiFormatter from "./formatters/IlDolomitiFormatter";
+import LaBusaFilter from "./filters/LaBusaFilter";
 import LaBusaFormatter from "./formatters/LaBusaFormatter";
 import logger from "./logger";
 import { FeedReaderService } from "./services/FeedReaderService";
@@ -25,7 +26,7 @@ const FEEDS: Feed[] = [
         new IlDolomitiFormatter(),
         "@ildolomitinews"),
     new Feed("https://labusa.info/feed/",
-        null,
+        new LaBusaFilter(),
         new LaBusaFormatter(),
         "@labusanews"),
 ];
