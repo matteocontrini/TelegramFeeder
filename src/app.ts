@@ -25,10 +25,10 @@ const FEEDS: Feed[] = [
         new IlDolomitiFilter(),
         new IlDolomitiFormatter(),
         "@ildolomitinews"),
-    new Feed("https://labusa.info/feed/",
-        new LaBusaFilter(),
-        new LaBusaFormatter(),
-        "@labusanews"),
+    // new Feed("https://labusa.info/feed/",
+    //     new LaBusaFilter(),
+    //     new LaBusaFormatter(),
+    //     "@labusanews"),
 ];
 
 container.register({
