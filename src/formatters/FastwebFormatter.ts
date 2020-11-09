@@ -1,0 +1,17 @@
+import { Item } from "rss-parser";
+import FormattedMessage from "../entities/FormattedMessage";
+import * as util from "../util";
+import IMessageFormatter from "./IMessageFormatter";
+
+export default class FastwebFormatter implements IMessageFormatter {
+    public async format(item: Item): Promise<FormattedMessage> {
+        let msg = "";
+
+        const title = util.telegramEscape(item.title);
+        msg += "<strong>" + title + "</strong>";
+
+        msg += "\n\n📰 " + item.link;
+
+        return new FormattedMessage(msg, null, true);
+    }
+}

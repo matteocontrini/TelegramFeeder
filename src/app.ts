@@ -5,6 +5,7 @@ import IlDolomitiFilter from "./filters/IlDolomitiFilter";
 import IlDolomitiFormatter from "./formatters/IlDolomitiFormatter";
 import LaBusaFilter from "./filters/LaBusaFilter";
 import LaBusaFormatter from "./formatters/LaBusaFormatter";
+import FastwebFormatter from "./formatters/FastwebFormatter";
 import logger from "./logger";
 import { FeedReaderService } from "./services/FeedReaderService";
 import { PollingService } from "./services/PollingService";
@@ -29,6 +30,10 @@ const FEEDS: Feed[] = [
     //     new LaBusaFilter(),
     //     new LaBusaFormatter(),
     //     "@labusanews"),
+    new Feed("https://www.fastweb.it/var/storage_feeds/CMS-Company/RSS/CorporateMagazine.rss",
+        null,
+        new FastwebFormatter(),
+        "@fastwebnews"),
 ];
 
 container.register({
