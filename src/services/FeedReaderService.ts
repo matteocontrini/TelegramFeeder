@@ -13,7 +13,9 @@ export class FeedReaderService implements IFeedReaderService {
             headers: { "User-Agent": "TelegramFeeder (+https://github.com/matteocontrini/TelegramFeeder)" }
         });
 
-        const output = await parser.parseURL(feed.url);
+        const url = feed.url + '?' + Date.now();
+
+        const output = await parser.parseURL(url);
         return output.items;
     }
 }
