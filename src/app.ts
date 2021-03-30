@@ -23,7 +23,7 @@ const container = awilix.createContainer({
 
 const FEEDS: Feed[] = [
     new Feed("https://www.ildolomiti.it/rss.xml",
-        new IlDolomitiFilter(),
+        null,
         new IlDolomitiFormatter(),
         "@ildolomitinews"),
     // new Feed("https://labusa.info/feed/",
