@@ -1,7 +1,6 @@
 ﻿import * as awilix from "awilix";
 import BotSettings from "./entities/BotSettings";
 import { Feed } from "./entities/Feed";
-import IlDolomitiFilter from "./filters/IlDolomitiFilter";
 import IlDolomitiFormatter from "./formatters/IlDolomitiFormatter";
 import LaBusaFilter from "./filters/LaBusaFilter";
 import LaBusaFormatter from "./formatters/LaBusaFormatter";
