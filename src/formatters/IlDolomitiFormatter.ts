@@ -2,6 +2,7 @@ import * as entities from "entities";
 import fetch, { Response } from "node-fetch";
 import { Item } from "rss-parser";
 import FormattedMessage from "../entities/FormattedMessage";
+import logger from "../logger";
 import * as util from "../util";
 import IMessageFormatter from "./IMessageFormatter";
 
@@ -47,9 +48,10 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
                 }
             }
         } catch (e) {
-            // ignore
+            logger.error("Could not fetch article (going on): ", e);
         }
 
+        // Fallback to feed item description
         if (!snippet && item.contentSnippet !== "") {
             snippet = item.contentSnippet;
         }

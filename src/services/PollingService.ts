@@ -73,7 +73,7 @@ export class PollingService implements IPollingService {
 
     private async notifyPosts(feed: Feed, newPosts: Item[]) {
         for (const post of newPosts) {
-            logger.info("Notifying post with guid:", post.guid);
+            logger.info(`Notifying post with guid [${post.guid}] and link [${post.link}]`);
 
             try {
                 const formatted: FormattedMessage = await feed.messageFormatter.format(post);
