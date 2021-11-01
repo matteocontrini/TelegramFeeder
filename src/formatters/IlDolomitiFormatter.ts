@@ -10,8 +10,6 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
     public async format(item: Item): Promise<FormattedMessage> {
         let msg = "";
 
-        item.link = decodeURI(item.link);
-
         let match = item.link.match(/https:\/\/www\.ildolomiti\.it\/(\w+)\//);
 
         if (match) {
