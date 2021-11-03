@@ -2,6 +2,7 @@ import { Item } from "rss-parser";
 import { Feed } from "../entities/Feed";
 import FormattedMessage from "../entities/FormattedMessage";
 import MessageType from "../entities/MessageType";
+import TelegramError from "../errors/TelegramError";
 import logger from "../logger";
 import { IFeedReaderService } from "./FeedReaderService";
 import { ITelegramService } from "./TelegramService";
@@ -86,7 +87,18 @@ export class PollingService implements IPollingService {
                 if (formatted.type === MessageType.Text) {
                     await this.telegram.sendMessage(feed.telegramChat, formatted.text, formatted.showPreview);
                 } else if (formatted.type === MessageType.Photo) {
-                    await this.telegram.sendPhoto(feed.telegramChat, formatted.photoUrl, formatted.text);
+                    try {
+                        await this.telegram.sendPhoto(feed.telegramChat, formatted.photoUrl, formatted.text);
+                    }
+                    catch (e) {
+                        // Send again as text message if photo fetch failed
+                        if (e instanceof TelegramError && e.isFailedToGetContent()) {
+                            await this.telegram.sendMessage(feed.telegramChat, formatted.text, formatted.showPreview);
+                        }
+                        else {
+                            throw e;
+                        }
+                    }
                 }
             } catch (e) {
                 logger.error("Error while notifying post: ", e);

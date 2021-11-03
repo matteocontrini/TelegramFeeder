@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import BotSettings from "../entities/BotSettings";
+import TelegramError from "../errors/TelegramError";
 
 export interface ITelegramService {
     sendMessage(chat: string, text: string, showPreview: boolean): Promise<void>;
@@ -30,7 +31,7 @@ export class TelegramService implements ITelegramService {
         const res = await fetch(url, opts);
 
         if (res.status !== 200) {
-            throw new Error(`Response status code was [${res.status}]. Body: ${await res.text()}`);
+            throw new TelegramError(`Response status code was [${res.status}]. Body: ${await res.text()}`);
         }
     }
 
@@ -51,7 +52,7 @@ export class TelegramService implements ITelegramService {
         const res = await fetch(url, opts);
 
         if (res.status !== 200) {
-            throw new Error(`Response status code was [${res.status}]. Body: ${await res.text()}`);
+            throw new TelegramError(`Response status code was [${res.status}]. Body: ${await res.text()}`);
         }
     }
 }
