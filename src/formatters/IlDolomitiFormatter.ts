@@ -15,7 +15,7 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
         if (match) {
             let category = match[1];
 
-            if (category == "blog" || category == "necrologi") {
+            if (category == "blog" || category == "necrologi" || category == "video") {
                 return null;
             }
 
