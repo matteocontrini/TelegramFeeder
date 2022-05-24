@@ -93,6 +93,7 @@ export class PollingService implements IPollingService {
                     catch (e) {
                         // Send again as text message if photo fetch failed
                         if (e instanceof TelegramError && e.isFailedToGetContent()) {
+                            logger.warn("Sending post as photo failed, retrying as text");
                             await this.telegram.sendMessage(feed.telegramChat, formatted.text, formatted.showPreview);
                         }
                         else {
