@@ -39,10 +39,16 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
                 if (match) {
                     photoUrl = match[1];
                 }
+                else {
+                    logger.warn("Image meta tag not matched");
+                }
 
                 match = respText.match(/<div class="artSub">(?:.+?)<p>(.+?)<\/p>/);
                 if (match) {
                     snippet = match[1];
+                }
+                else {
+                    logger.warn("Article summary not matched");
                 }
             }
         } catch (e) {
