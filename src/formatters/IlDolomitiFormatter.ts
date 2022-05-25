@@ -47,9 +47,9 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
                 if (match) {
                     snippet = match[1];
                 }
-                else {
-                    logger.warn("Article summary not matched");
-                }
+            }
+            else {
+                logger.error("Article fetch returned " + resp.status + " (going on)");
             }
         } catch (e) {
             logger.error("Could not fetch article (going on): ", e);
