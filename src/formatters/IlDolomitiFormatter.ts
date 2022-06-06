@@ -40,7 +40,7 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
                     photoUrl = match[1];
                 }
                 else {
-                    logger.warn("Image meta tag not matched");
+                    logger.error("Image meta tag not matched");
                 }
 
                 match = respText.match(/<div class="artSub">(?:.+?)<p>(.+?)<\/p>/);
