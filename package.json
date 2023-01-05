@@ -19,7 +19,7 @@
     "@types/node-fetch": "^2.3.7",
     "awilix": "^4.2.2",
     "entities": "^1.1.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "rss-parser": "^3.7.3"
   }
 }
