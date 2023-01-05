@@ -49,7 +49,7 @@ export default class IlDolomitiFormatter implements IMessageFormatter {
                 }
             }
             else {
-                logger.error("Article fetch returned " + resp.status + " (going on)");
+                logger.warn("Article fetch returned " + resp.status + " (going on)");
             }
         } catch (e) {
             logger.error("Could not fetch article (going on): ", e);
